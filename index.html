@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moon Bar | Кривий Ріг</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: #030307;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 77, 190, .18), transparent 32%),
+        radial-gradient(circle at 80% 70%, rgba(245, 188, 92, .12), transparent 30%),
+        #030307;
+      z-index: -3;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(#fff 1px, transparent 1px);
+      background-size: 90px 90px;
+      opacity: .13;
+      animation: moveStars 45s linear infinite;
+      z-index: -2;
+    }
+
+    @keyframes moveStars {
+      from { transform: translateY(0); }
+      to { transform: translateY(-220px); }
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 18px;
+      position: relative;
+    }
+
+    .ring {
+      position: absolute;
+      width: min(75vw, 560px);
+      height: min(75vw, 560px);
+      border: 4px solid #ff6fcf;
+      border-radius: 50%;
+      box-shadow: 0 0 35px #ff6fcf, inset 0 0 25px rgba(255,111,207,.45);
+      opacity: .75;
+      animation: glow 3.5s ease-in-out infinite;
+    }
+
+    @keyframes glow {
+      0%,100% { opacity: .55; transform: scale(1); }
+      50% { opacity: .95; transform: scale(1.03); }
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .label {
+      color: #ffd58a;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(58px, 14vw, 150px);
+      line-height: .85;
+      color: #ffd58a;
+      text-shadow: 0 0 50px rgba(255, 213, 138, .35);
+      margin-bottom: 28px;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto 34px;
+      color: #ddd;
+      font-size: clamp(17px, 2vw, 22px);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 25px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #050505;
+      background: linear-gradient(135deg, #ffd58a, #fff0c6);
+      font-weight: 800;
+      transition: .3s;
+    }
+
+    .btn.dark {
+      background: rgba(255,255,255,.06);
+      color: #ffd58a;
+      border: 1px solid rgba(255,213,138,.4);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn:hover { transform: translateY(-4px); }
+
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 85px 18px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      color: #ffd58a;
+      font-size: clamp(38px, 6vw, 72px);
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .about {
+      max-width: 850px;
+      margin: auto;
+      padding: 36px;
+      border: 1px solid rgba(255,213,138,.2);
+      background: rgba(255,255,255,.055);
+      backdrop-filter: blur(16px);
+      border-radius: 32px;
+      text-align: center;
+      color: #ddd;
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,213,138,.22);
+      border-radius: 30px;
+      padding: 26px;
+      min-height: 220px;
+      transition: .35s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255,213,138,.65);
+      box-shadow: 0 25px 80px rgba(0,0,0,.45);
+    }
+
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      color: #ffd58a;
+      font-size: 27px;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: #d8d8df;
+      line-height: 1.6;
+    }
+
+    .price {
+      margin-top: 18px;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .promo {
+      padding: 44px 28px;
+      border-radius: 36px;
+      background: linear-gradient(135deg, rgba(255,111,207,.15), rgba(255,213,138,.12));
+      border: 1px solid rgba(255,213,138,.25);
+      text-align: center;
+      color: #eee;
+    }
+
+    .contact-card a {
+      color: #ffd58a;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    footer {
+      padding: 45px 18px;
+      text-align: center;
+      color: #999;
+      background: rgba(0,0,0,.45);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media(max-width: 650px) {
+      section { padding: 65px 16px; }
+      .about { padding: 26px; font-size: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stars"></div>
+
+  <header>
+    <div class="ring"></div>
+    <div class="hero">
+      <div class="label">Кривий Ріг • Cocktail Space</div>
+      <h1>Moon<br>Bar</h1>
+      <p>Космічна атмосфера, авторські коктейлі, футбол, сети шотів і вечори, які хочеться повторити.</p>
+      <div class="buttons">
+        <a href="#menu" class="btn">Дивитись меню</a>
+        <a href="#contacts" class="btn dark">Контакти</a>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <h2>Атмосфера</h2>
+    <div class="about">
+      Moon Bar — це місце для вечорів без зайвого пафосу, але з красивою подачею, якісними напоями та настроєм, у який хочеться повертатися.
+    </div>
+  </section>
+
+  <section id="menu">
+    <h2>Меню</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Місячний Хайбол</h3>
+        <p>Легкий, освіжаючий коктейль з віскі, цитрусовою свіжістю та яскравим післясмаком.</p>
+        <div class="price">ціна скоро</div>
+      </div>
+
+      <div class="card">
+        <h3>Орбітальний Сауер</h3>
+        <p>Арахісовий віскі, смородина, лимон і ніжна піна. Насичений, ягідний, глибокий.</p>
+        <div class="price">ціна скоро</div>
+      </div>
+
+      <div class="card">
+        <h3>Місячне Сяйво</h3>
+        <p>Світлий коктейль з космічним настроєм, м’якою подачею та освіжаючим балансом.</p>
+        <div class="price">ціна скоро</div>
+      </div>
+
+      <div class="card">
+        <h3>Космічна Маракуя</h3>
+        <p>Яскравий тропічний коктейль з маракуєю, легкою кислинкою та вечірнім вайбом.</p>
+        <div class="price">ціна скоро</div>
+      </div>
+
+      <div class="card">
+        <h3>Dirty Lemon Drop</h3>
+        <p>Лимонний, чистий, стильний коктейль з характером.</p>
+        <div class="price">ціна скоро</div>
+      </div>
+
+      <div class="card">
+        <h3>Галактичний Парадокс</h3>
+        <p>Сет із 5 шаруватих шотів для вечора, який не хочеться закінчувати.</p>
+        <div class="price">550 грн</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="promo">
+      <h2>Футбольні вечори</h2>
+      <p>Матчі, пиво, снеки, компанія і правильний барний шум. Актуальні пропозиції шукай у Telegram.</p>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <h2>Контакти</h2>
+
+    <div class="grid">
+      <div class="card contact-card">
+        <h3>Адреса</h3>
+        <p>просп. 200-річчя Кривого Рогу, 17А</p>
+        <p>Зупинка: Спаська</p>
+      </div>
+
+      <div class="card contact-card">
+        <h3>Графік</h3>
+        <p>Щодня</p>
+        <p>10:00 — 23:00</p>
+      </div>
+
+      <div class="card contact-card">
+        <h3>Соцмережі</h3>
+        <p><a href="https://instagram.com/moonbar.kr" target="_blank">Instagram</a></p>
+        <p><a href="#" target="_blank">Telegram</a></p>
+        <p><a href="#" target="_blank">TikTok</a></p>
+      </div>
+
+      <div class="card contact-card">
+        <h3>Карта</h3>
+        <p><a href="#" target="_blank">Прокласти маршрут</a></p>
+        <p>Сюди вставимо посилання Google Maps.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Moon Bar © 2026</p>
+    <p>Місце, де кожен вечір стає особливим.</p>
+  </footer>
+</body>
+</html>
